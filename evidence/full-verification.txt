@@ -1,0 +1,18 @@
+
+> nestjs-serializer-plain-object-lab@1.0.0 test
+> jest --runInBand
+
+PASS test/recovery-codes.e2e-spec.ts
+  RecoveryCodesController
+    ✓ DTOインスタンスを直接返す経路では復旧コードを出力しない (27 ms)
+    ✓ 封筒オブジェクトで返しても復旧コードを出力しない (5 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       2 passed, 2 total
+Snapshots:   0 total
+Time:        2.241 s, estimated 3 s
+Ran all test suites.
+
+> nestjs-serializer-plain-object-lab@1.0.0 build
+> tsc -p tsconfig.build.json
+
