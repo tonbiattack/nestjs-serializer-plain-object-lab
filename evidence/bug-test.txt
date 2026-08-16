@@ -1,0 +1,39 @@
+
+> nestjs-serializer-plain-object-lab@1.0.0 test:repro
+> jest --runInBand test/recovery-codes.e2e-spec.ts
+
+FAIL test/recovery-codes.e2e-spec.ts
+  RecoveryCodesController
+    ✓ DTOインスタンスを直接返す経路では復旧コードを出力しない (31 ms)
+    ✕ 封筒オブジェクトで返しても復旧コードを出力しない (9 ms)
+
+  ● RecoveryCodesController › 封筒オブジェクトで返しても復旧コードを出力しない
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 0
+    + Received  + 1
+
+      Object {
+        "data": Object {
+          "id": "rc-17",
+          "label": "経理部の予備コード",
+    +     "recoveryCode": "NEVER-SEND-THIS-TO-THE-CLIENT",
+        },
+      }
+
+      40 |       .expect(200);
+      41 |
+    > 42 |     expect(response.body).toEqual({
+         |                           ^
+      43 |       data: {
+      44 |         id: 'rc-17',
+      45 |         label: '経理部の予備コード',
+
+      at Object.<anonymous> (test/recovery-codes.e2e-spec.ts:42:27)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 passed, 2 total
+Snapshots:   0 total
+Time:        2.869 s
+Ran all test suites matching /test\/recovery-codes.e2e-spec.ts/i.
