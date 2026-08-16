@@ -5,6 +5,7 @@ import {
   Param,
   UseInterceptors,
 } from '@nestjs/common';
+import { RecoveryCodeEnvelopeDto } from './recovery-code-envelope.dto';
 import { RecoveryCodeResponseDto } from './recovery-code-response.dto';
 import { RecoveryCodesService } from './recovery-codes.service';
 
@@ -19,9 +20,11 @@ export class RecoveryCodesController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string): { data: RecoveryCodeResponseDto } {
+  findOne(@Param('id') id: string): RecoveryCodeEnvelopeDto {
     const record = this.recoveryCodesService.findById(id);
 
-    return { data: { ...record } as RecoveryCodeResponseDto };
+    return new RecoveryCodeEnvelopeDto({
+      data: new RecoveryCodeResponseDto(record),
+    });
   }
 }
